@@ -9,5 +9,4 @@ public class UberReviewServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UberReviewServiceApplication.class, args);
 	}
-
 }
