@@ -84,9 +84,25 @@ public class ReviewService  implements CommandLineRunner {
 
          */
 
-        Optional<Driver> driver = driverRepository.findById(1L); // FetchType is EAGER
+        /*
+        Optional<Driver> driver = driverRepository.findById(1L);
 
-        driver.ifPresent(value -> System.out.println(value.getId()));
+        driver.ifPresent(value -> {
+            System.out.println(value.getId());
+            List<Booking> b =value.getBookings();
+            for(Booking booking : b){
+                System.out.println(booking.getId());
+            }
+        });
+
+         */
+
+        Optional<Driver> driver = driverRepository.rawFindByIdAndLicenseNumber(1L,"UK074141");
+
+        driver.ifPresent(value -> {
+            System.out.println(value.getName());
+        });
+
 
     }
 }
