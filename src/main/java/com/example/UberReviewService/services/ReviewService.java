@@ -104,6 +104,8 @@ public class ReviewService  implements CommandLineRunner {
             System.out.println(value.getName());
         });
 
-         */
+        */
+
+        Optional<Review> r =reviewRepository.findReviewByBookingId(1L);
     }
 }

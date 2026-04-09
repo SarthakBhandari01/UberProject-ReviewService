@@ -6,7 +6,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,10 +18,12 @@ public class Driver extends BaseModel {
 
     private String name;
 
+    private String phoneNumber;
+
     @Column(nullable=false , unique = true)
     private String licenseNumber;
 
     // 1 : n , Driver : Booking
     @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY)
-    private List<Booking> bookings = new ArrayList<>();
+    private List<Booking> bookings ;
 }
