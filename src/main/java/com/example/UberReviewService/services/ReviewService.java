@@ -97,12 +97,13 @@ public class ReviewService  implements CommandLineRunner {
 
          */
 
+        /*
         Optional<Driver> driver = driverRepository.rawFindByIdAndLicenseNumber(1L,"UK074141");
 
         driver.ifPresent(value -> {
             System.out.println(value.getName());
         });
 
-
+         */
     }
 }
