@@ -1,5 +1,6 @@
 package com.example.UberReviewService.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,6 +25,7 @@ public class Driver extends BaseModel {
     private String licenseNumber;
 
     // 1 : n , Driver : Booking
-    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "driver")
+    @JsonIgnore
     private List<Booking> bookings ;
 }

@@ -25,6 +25,19 @@ public class Booking extends BaseModel{
     @ManyToOne(fetch=FetchType.LAZY)
     private Driver driver;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Passenger passenger;
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "bookingStatus=" + bookingStatus +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", totalDistance=" + totalDistance +
+                ", driver=" + driver +
+                ", passenger=" + passenger +
+                '}';
+    }
 }

@@ -1,10 +1,13 @@
 package com.example.UberReviewService.controllers;
 
+import com.example.UberReviewService.adapters.CreateReviewDtoToReviewAdapter;
+import com.example.UberReviewService.dtos.CreateReviewDto;
 import com.example.UberReviewService.models.Review;
 import com.example.UberReviewService.services.ReviewService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,14 +18,26 @@ import java.util.Optional;
 public class ReviewController {
 
     private final ReviewService reviewService;
+    private final CreateReviewDtoToReviewAdapter  createReviewDtoToReviewAdapter;
 
-    public ReviewController(ReviewService reviewService){
+    public ReviewController(ReviewService reviewService,
+                            CreateReviewDtoToReviewAdapter  createReviewDtoToReviewAdapter){
         this.reviewService = reviewService;
+        this.createReviewDtoToReviewAdapter = createReviewDtoToReviewAdapter;
     }
 
     @PostMapping
-    public ResponseEntity<Review> publishReview(@RequestBody Review request){
-        Review savedReview = reviewService.publishReview(request);
+    public ResponseEntity<?> publishReview(@Validated  @RequestBody CreateReviewDto request){
+
+        System.out.println("***********");
+        System.out.println(request);
+        System.out.println("***********");
+        Review incomingReview = this.createReviewDtoToReviewAdapter.convertDto(request);
+        if(incomingReview==null){
+            return new ResponseEntity<>("Invalid arguments", HttpStatus.BAD_REQUEST);
+        }
+
+        Review savedReview = reviewService.publishReview(incomingReview);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedReview);
     }
 
