@@ -26,6 +26,6 @@ public class Driver extends BaseModel {
 
     // 1 : n , Driver : Booking
     @OneToMany(mappedBy = "driver")
-    @JsonIgnore
+//    @JsonIgnore
     private List<Booking> bookings ;
 }

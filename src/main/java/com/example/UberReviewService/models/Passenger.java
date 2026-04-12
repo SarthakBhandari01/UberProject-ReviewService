@@ -18,6 +18,6 @@ public class Passenger extends BaseModel {
     private String name;
 
     @OneToMany(mappedBy = "passenger")
-    @JsonIgnore
+//    @JsonIgnore
     private List<Booking> bookings ;
 }

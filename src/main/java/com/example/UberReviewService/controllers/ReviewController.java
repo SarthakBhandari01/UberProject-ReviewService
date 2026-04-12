@@ -2,6 +2,7 @@ package com.example.UberReviewService.controllers;
 
 import com.example.UberReviewService.adapters.CreateReviewDtoToReviewAdapter;
 import com.example.UberReviewService.dtos.CreateReviewDto;
+import com.example.UberReviewService.dtos.ReviewDto;
 import com.example.UberReviewService.models.Review;
 import com.example.UberReviewService.services.ReviewService;
 import jakarta.persistence.EntityNotFoundException;
@@ -38,7 +39,17 @@ public class ReviewController {
         }
 
         Review savedReview = reviewService.publishReview(incomingReview);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedReview);
+
+        ReviewDto response = ReviewDto.builder()
+                .id(savedReview.getId())
+                .content(savedReview.getContent())
+                .booking(savedReview.getBooking().getId())
+                .rating(savedReview.getRating())
+                .createdAt(savedReview.getCreatedAt())
+                .updatedAt(savedReview.getUpdatedAt())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping
@@ -84,6 +95,7 @@ public class ReviewController {
                     .status(HttpStatus.NOT_FOUND)
                     .body(e.getMessage());
         }
+
 
     }
 }
