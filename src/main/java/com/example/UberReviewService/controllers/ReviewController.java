@@ -1,9 +1,9 @@
 package com.example.UberReviewService.controllers;
 
+import com.example.UberEntityService.models.Review;
 import com.example.UberReviewService.adapters.CreateReviewDtoToReviewAdapter;
 import com.example.UberReviewService.dtos.CreateReviewDto;
 import com.example.UberReviewService.dtos.ReviewDto;
-import com.example.UberReviewService.models.Review;
 import com.example.UberReviewService.services.ReviewService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
